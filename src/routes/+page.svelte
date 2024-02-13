@@ -1,2 +1,11 @@
-<h1>Welcome to Najm</h1>
-<p>Visit <a href="https://najm.io">Najm Landing Page</a> View the product</p>
+<script>
+	import '../app.css';
+</script>
+
+<h1 class="text-3xl font-bold underline">Najm Landing Page View the product</h1>
+
+<style lang="postcss">
+	:global(html) {
+		background-color: theme(colors.gray.100);
+	}
+</style>
