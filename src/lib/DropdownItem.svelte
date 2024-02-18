@@ -32,7 +32,9 @@
 		>
 			{#each item.items as subItem}
 				<li class="hover:bg-blue-700 hover:text-white p-2 text-blue-500 bg-white" role="menuitem">
-					<DropdownItem item={subItem} dropDirection="left-full" />
+					<a href={subItem.page_name ? subItem.page_name : '#'}>
+						<DropdownItem item={subItem} dropDirection="left-full" />
+					</a>
 				</li>
 			{/each}
 		</ul>
