@@ -1,35 +1,9 @@
 <script lang="ts">
 	import DropdownItem from './DropdownItem.svelte';
-	import type { DropdownItemStruct } from '../Types/DropdownItem';
-
-	const featuresItems: DropdownItemStruct[] = [
-		{
-			name: 'Your Partners',
-			items: [
-				{
-					name: 'Invoicing',
-					items: []
-				}
-			]
-		},
-		{ name: 'Accounting', items: [] },
-		{ name: 'Project Management', items: [] }
-	];
-
-	const resourcesItems: DropdownItemStruct[] = [
-		{ name: 'Sharing Is Caring', items: [] },
-		{ name: 'Tools', items: [] },
-		{ name: 'Support', items: [] }
-	];
-
-	const plansItems: DropdownItemStruct[] = [
-		{ name: 'Professional', items: [] },
-		{ name: 'Company', items: [] },
-		{ name: 'Other', items: [] }
-	];
+	import { featuresItems, resourcesItems, plansItems } from './../constants/LPHeaderItems';
 </script>
 
-<nav class="bg-gradient-theme text-white p-4">
+<nav class="bg-gradient-theme text-white p-0 h-16">
 	<ul class="flex flex-row justify-between items-stretch h-full p-0 m-0">
 		<li class="flex items-center">
 			<DropdownItem item={{ name: 'Najm Accounting Services', items: [] }} />
