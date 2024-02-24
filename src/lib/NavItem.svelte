@@ -1,4 +1,4 @@
-<!-- DropdownItem.svelte -->
+<!-- NavItem.svelte -->
 <script lang="ts">
 	import DropdownItem from './DropdownItem.svelte';
 	import type { DropdownItemStruct } from '../Types/DropdownItem';
@@ -23,8 +23,8 @@
 	</button>
 	{#if isOpen && item.items && item.items.length > 0}
 		<ul
-			class="absolute left-full top-0 w-48 bg-white shadow-md"
-			style="left: calc(100% - 1px)"
+			class="absolute top-full mt-2 w-48 bg-white shadow-md"
+			style="top: calc(100% - 10px)"
 			on:mouseenter={() => (isOpen = true)}
 			on:mouseleave={() => (isOpen = false)}
 			role="menu"
