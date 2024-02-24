@@ -8,7 +8,7 @@
 </script>
 
 <div
-	class="relative w-full h-full"
+	class="relative h-full w-full"
 	on:mouseenter={() => (isOpen = true)}
 	on:mouseleave={() => (isOpen = false)}
 	role="menu"
@@ -16,7 +16,7 @@
 	tabindex="0"
 >
 	<button
-		class="hover:underline text-white bg-blue-500 px-4 py-2 rounded-md w-full h-full"
+		class="h-full w-full bg-blue-600 px-4 py-2 text-white hover:underline"
 		aria-haspopup="true"
 		aria-expanded={isOpen}
 	>
@@ -24,14 +24,14 @@
 	</button>
 	{#if isOpen && item.items && item.items.length > 0}
 		<ul
-			class={`absolute ${dropDirection === 'bottom' ? 'top-full mt-2' : 'left-full top-0'} bg-white shadow-md w-48`}
+			class={`absolute ${dropDirection === 'bottom' ? 'top-full mt-2' : 'left-full top-0'} w-48 bg-white shadow-md`}
 			on:mouseenter={() => (isOpen = true)}
 			on:mouseleave={() => (isOpen = false)}
 			role="menu"
 			tabindex="0"
 		>
 			{#each item.items as subItem}
-				<li class="hover:bg-blue-700 hover:text-white p-2 text-blue-500 bg-white" role="menuitem">
+				<li class="bg-white p-2 text-blue-600 hover:bg-blue-600 hover:text-white" role="menuitem">
 					<a href={subItem.page_name ? subItem.page_name : '#'}>
 						<DropdownItem item={subItem} dropDirection="left-full" />
 					</a>

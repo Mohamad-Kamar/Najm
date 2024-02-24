@@ -1,8 +1,15 @@
 <script>
-  import Header from '../lib/Header.svelte';
+	import { AppShell } from '@skeletonlabs/skeleton';
+
+	import Header from '../lib/Header.svelte';
 	import '../app.pcss';
 </script>
 
-
-<Header />
-<h1 class="text-3xl font-bold underline text-center mt-8">Najm Landing Page: View the product</h1>
+<AppShell>
+	<svelte:fragment slot="header">
+		<Header />
+		<h1 class="mt-8 text-center text-3xl font-bold underline">
+			Najm Landing Page: View the product
+		</h1>
+	</svelte:fragment>
+</AppShell>
