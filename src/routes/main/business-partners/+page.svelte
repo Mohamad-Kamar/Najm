@@ -1,5 +1,5 @@
-<script>
-	import { AppShell } from '@skeletonlabs/skeleton';
+<script lang="ts">
+	import { AppShell, ListBox, ListBoxItem } from '@skeletonlabs/skeleton';
 	let tableArr = [
 		{ position: 1, name: 'Hydrogen', symbol: 'H', weight: 1.0079 },
 		{ position: 2, name: 'Helium', symbol: 'He', weight: 4.0026 },
@@ -13,6 +13,7 @@
 		{ position: 10, name: 'Neon', symbol: 'Ne', weight: 20.1797 },
 	];
 	const totalWeight = tableArr.reduce((acc, row) => acc + row.weight, 0);
+	let valueMultiple: string[] = ['Client', 'Supplier', 'Employee', 'Other'];
 </script>
 
 <AppShell>
@@ -20,7 +21,7 @@
 		<div class="bg-gradient-theme h-32 w-full text-white">Header</div>
 	</svelte:fragment>
 	<div class="grid grid-cols-1 divide-y">
-		<div class="grid grid-cols-2 divide-x">
+		<div class="grid grid-cols-1 divide-x">
 			<div>
 				<div>
 					<label> From Date </label>
@@ -29,12 +30,21 @@
 					<label> FromTo Date </label>
 				</div>
 				<div>
-					<label> Search Item </label>
+					<label> Search Filter </label>
+					<ListBox multiple>
+						<ListBoxItem bind:group={valueMultiple} name="medium" value="Client">Client</ListBoxItem
+						>
+						<ListBoxItem bind:group={valueMultiple} name="medium" value="Supplier"
+							>Supplier</ListBoxItem
+						>
+						<ListBoxItem bind:group={valueMultiple} name="medium" value="Employee"
+							>Employee</ListBoxItem
+						>
+						<ListBoxItem bind:group={valueMultiple} name="medium" value="Other">Other</ListBoxItem>
+					</ListBox>
 				</div>
-			</div>
-			<div>
 				<div>
-					<label> Filter by </label>
+					<label> Search Item </label>
 				</div>
 			</div>
 		</div>
