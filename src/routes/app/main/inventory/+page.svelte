@@ -39,9 +39,7 @@
 			</div>
 		</div>
 		<div>
-			<!-- Responsive Container (recommended) -->
 			<div class="table-container">
-				<!-- Native Table Element -->
 				<table class="table table-hover">
 					<thead>
 						<tr>
