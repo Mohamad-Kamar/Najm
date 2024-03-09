@@ -13,7 +13,6 @@
 		{ position: 9, name: 'Fluorine', symbol: 'F', weight: 18.9984, modifiedDate: randomDate() },
 		{ position: 10, name: 'Neon', symbol: 'Ne', weight: 20.1797, modifiedDate: randomDate() },
 	];
-	const totalWeight = tableArr.reduce((acc, row) => acc + row.weight, 0);
 	let valueMultiple: string[] = ['Client', 'Supplier', 'Employee'];
 </script>
 
@@ -25,10 +24,12 @@
 		<div class="grid grid-cols-1 divide-x">
 			<div>
 				<div>
-					<label> From Date </label>
+					<label for="from"> From Date </label>
+					<input id="from" type="date" class="input bg-white" aria-label="From Date" />
 				</div>
 				<div>
-					<label> FromTo Date </label>
+					<label for="to"> To Date </label>
+					<input id="to" type="date" class="input bg-white" aria-label="To Date" />
 				</div>
 				<div>
 					<label> Search Filter </label>
@@ -45,7 +46,14 @@
 					</ListBox>
 				</div>
 				<div>
-					<label> Search Item </label>
+					<label for="search-item"> Search Item </label>
+					<input
+						type="text"
+						class="input bg-white"
+						placeholder="Search..."
+						aria-label="Search Item"
+						id="search-item"
+					/>
 				</div>
 			</div>
 		</div>
