@@ -16,20 +16,26 @@
 </script>
 
 <AppShell>
-	<svelte:fragment slot="header">
-		<div class="bg-gradient-theme h-32 w-full text-white">Header</div>
-	</svelte:fragment>
 	<div class="grid grid-cols-1 divide-y">
 		<div class="grid grid-cols-2 divide-x">
 			<div>
 				<div>
-					<label> From Date </label>
+					<label for="from"> From Date </label>
+					<input id="from" type="date" class="input bg-white" aria-label="From Date" />
 				</div>
 				<div>
-					<label> FromTo Date </label>
+					<label for="to"> To Date </label>
+					<input id="to" type="date" class="input bg-white" aria-label="To Date" />
 				</div>
 				<div>
-					<label> Search Item </label>
+					<label for="search-item"> Search Item </label>
+					<input
+						type="text"
+						class="input bg-white"
+						placeholder="Search..."
+						aria-label="Search Item"
+						id="search-item"
+					/>
 				</div>
 			</div>
 			<div>

@@ -17,9 +17,6 @@
 </script>
 
 <AppShell>
-	<svelte:fragment slot="header">
-		<div class="bg-gradient-theme h-32 w-full text-white">Header</div>
-	</svelte:fragment>
 	<div class="grid grid-cols-1 divide-y">
 		<div class="grid grid-cols-1 divide-x">
 			<div>

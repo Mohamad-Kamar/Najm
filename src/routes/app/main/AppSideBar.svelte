@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { AppRail, AppRailTile, AppRailAnchor } from '@skeletonlabs/skeleton';
+	import { AppRail, AppRailAnchor } from '@skeletonlabs/skeleton';
 	let currentTile: number = 0;
 </script>
 
