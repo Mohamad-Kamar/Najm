@@ -1,7 +1,7 @@
 <script>
 	import { AppShell } from '@skeletonlabs/skeleton';
 	import AppSideBar from './AppSideBar.svelte';
-	import '../../app.pcss';
+	import './../../../../app.pcss';
 </script>
 
 <div style="display: contents" class="h-full overflow-hidden">
