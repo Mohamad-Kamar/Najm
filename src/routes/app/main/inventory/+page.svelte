@@ -1,40 +1,140 @@
 <script lang="ts">
-	import { AppShell, ListBox, ListBoxItem } from '@skeletonlabs/skeleton';
-	let tableArr = [
-		{ position: 1, name: 'Hydrogen', symbol: 'H', weight: 1.0079 },
-		{ position: 2, name: 'Helium', symbol: 'He', weight: 4.0026 },
-		{ position: 3, name: 'Lithium', symbol: 'Li', weight: 6.941 },
-		{ position: 4, name: 'Beryllium', symbol: 'Be', weight: 9.0122 },
-		{ position: 5, name: 'Boron', symbol: 'B', weight: 10.811 },
-		{ position: 6, name: 'Carbon', symbol: 'C', weight: 12.0107 },
-		{ position: 7, name: 'Nitrogen', symbol: 'N', weight: 14.0067 },
-		{ position: 8, name: 'Oxygen', symbol: 'O', weight: 15.9994 },
-		{ position: 9, name: 'Fluorine', symbol: 'F', weight: 18.9984 },
-		{ position: 10, name: 'Neon', symbol: 'Ne', weight: 20.1797 },
+	import { AppShell, ListBox, ListBoxItem, Autocomplete, InputChip } from '@skeletonlabs/skeleton';
+	import type { InventoryItemRecord } from '../../../../Types/InventoryItemRecord';
+	let popupSettings = {
+		event: 'focus-click',
+		target: 'popupAutocomplete',
+		placement: 'bottom',
+	};
+	let valueMultiple: string[] = ['Client', 'Supplier', 'Employee'];
+
+	let itemsTable: InventoryItemRecord = [
+		{ itemName: 'banana', quantityOrdered: 3, totalUnits: 5, soldTo: 'client', priceOfSale: 5.0 },
+		{
+			itemName: 'apple',
+			quantityOrdered: 5,
+			totalUnits: 10,
+			soldTo: 'supplier',
+			priceOfSale: 10.0,
+		},
+		{
+			itemName: 'orange',
+			quantityOrdered: 7,
+			totalUnits: 15,
+			soldTo: 'employee',
+			priceOfSale: 15.0,
+		},
+		{ itemName: 'grape', quantityOrdered: 9, totalUnits: 20, soldTo: 'client', priceOfSale: 20.0 },
+		{
+			itemName: 'pear',
+			quantityOrdered: 11,
+			totalUnits: 25,
+			soldTo: 'supplier',
+			priceOfSale: 25.0,
+		},
+		{
+			itemName: 'peach',
+			quantityOrdered: 13,
+			totalUnits: 30,
+			soldTo: 'employee',
+			priceOfSale: 30.0,
+		},
+		{ itemName: 'plum', quantityOrdered: 15, totalUnits: 35, soldTo: 'client', priceOfSale: 35.0 },
+		{
+			itemName: 'kiwi',
+			quantityOrdered: 17,
+			totalUnits: 40,
+			soldTo: 'supplier',
+			priceOfSale: 40.0,
+		},
+		{
+			itemName: 'mango',
+			quantityOrdered: 19,
+			totalUnits: 45,
+			soldTo: 'employee',
+			priceOfSale: 45.0,
+		},
+		{
+			itemName: 'papaya',
+			quantityOrdered: 21,
+			totalUnits: 50,
+			soldTo: 'client',
+			priceOfSale: 50.0,
+		},
+		{
+			itemName: 'watermelon',
+			quantityOrdered: 23,
+			totalUnits: 55,
+			soldTo: 'supplier',
+			priceOfSale: 55.0,
+		},
+		{
+			itemName: 'cantaloupe',
+			quantityOrdered: 25,
+			totalUnits: 60,
+			soldTo: 'employee',
+			priceOfSale: 60.0,
+		},
+		{
+			itemName: 'honeydew',
+			quantityOrdered: 27,
+			totalUnits: 65,
+			soldTo: 'client',
+			priceOfSale: 65.0,
+		},
+		{
+			itemName: 'cucumber',
+			quantityOrdered: 29,
+			totalUnits: 70,
+			soldTo: 'supplier',
+			priceOfSale: 70.0,
+		},
+		{
+			itemName: 'tomato',
+			quantityOrdered: 31,
+			totalUnits: 75,
+			soldTo: 'employee',
+			priceOfSale: 25,
+		},
 	];
 
-	const totalWeight = tableArr.reduce((acc, row) => acc + row.weight, 0);
-	let valueMultiple: string[] = ['Client', 'Supplier', 'Employee'];
+	let selectedItems: string[] = [];
+	let searchString = '';
+	function onItemSelection(event: CustomEvent<AutocompleteOption<string>>): void {
+		selectedItems = [...selectedItems, event.detail.label];
+		searchString = '';
+	}
 </script>
 
 <AppShell>
-	<section class="flex justify-between bg-white">
+	<section class="flex h-96 justify-between bg-white">
 		<div class="flex w-3/6 justify-around">
-			<div class="flex flex-col">
+			<div class="flex w-3/6 flex-col">
 				<label class="p-1" for="from">From Date</label>
 				<label class="p-1" for="to">To Date</label>
 				<label class="p-1" for="search-item">Search Item</label>
 			</div>
-			<div class="flex flex-col">
+			<div class="flex w-3/6 flex-col">
 				<input id="from" type="date" class="input w-40 bg-white p-1" aria-label="From Date" />
 				<input id="to" type="date" class="input w-40 bg-white p-1" aria-label="To Date" />
-				<input
-					type="text"
-					class="input w-40 bg-white p-1"
-					placeholder="Search..."
-					aria-label="Search Item"
-					id="search-item"
-				/>
+				<div>
+					<InputChip
+						bind:input={searchString}
+						bind:value={selectedItems}
+						name="chips"
+						id="search-item"
+					/>
+					<div class="card max-h-48 w-full max-w-sm overflow-y-auto p-4" tabindex="-1">
+						<Autocomplete
+							bind:input={searchString}
+							options={itemsTable.map((item) => ({
+								label: item.itemName,
+								value: item.itemName,
+							}))}
+							on:selection={onItemSelection}
+						/>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="flex h-full w-3/6 justify-around">
@@ -54,32 +154,34 @@
 	</section>
 
 	<section>
+		<div>
+			<p>Item Details:</p>
+		</div>
+	</section>
+
+	<section>
 		<div class="table-container">
 			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th>Position</th>
-						<th>Name</th>
-						<th>Symbol</th>
-						<th>Weight</th>
+						<th>Item Name</th>
+						<th>Quantity Ordered</th>
+						<th>Total Units</th>
+						<th>Sold To</th>
+						<th>Price of Sale</th>
 					</tr>
 				</thead>
 				<tbody>
-					{#each tableArr as row, i}
+					{#each itemsTable as row}
 						<tr>
-							<td>{row.position}</td>
-							<td>{row.name}</td>
-							<td>{row.symbol}</td>
-							<td>{row.weight}</td>
+							<td>{row.itemName}</td>
+							<td>{row.quantityOrdered}</td>
+							<td>{row.totalUnits}</td>
+							<td>{row.soldTo}</td>
+							<td>{row.priceOfSale}</td>
 						</tr>
 					{/each}
 				</tbody>
-				<tfoot>
-					<tr>
-						<th colspan="3">Calculated Total Weight</th>
-						<td>{totalWeight}</td>
-					</tr>
-				</tfoot>
 			</table>
 		</div>
 	</section>
