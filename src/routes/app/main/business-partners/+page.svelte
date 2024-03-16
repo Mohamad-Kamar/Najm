@@ -29,7 +29,7 @@
 					<input id="to" type="date" class="input bg-white" aria-label="To Date" />
 				</div>
 				<div>
-					<label> Search Filter </label>
+					<p>Search Filter</p>
 					<ListBox multiple>
 						<ListBoxItem bind:group={valueMultiple} name="medium" value="Client">
 							Client

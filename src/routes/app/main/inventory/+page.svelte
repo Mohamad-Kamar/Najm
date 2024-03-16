@@ -100,7 +100,7 @@
 
 	let selectedItems: string[] = [];
 	let searchString = '';
-	function onItemSelection(event: CustomEvent<AutocompleteOption<string>>): void {
+	function onItemSelection(event: CustomEvent): void {
 		selectedItems = [...selectedItems, event.detail.label];
 		searchString = '';
 	}
@@ -137,11 +137,11 @@
 				</div>
 			</div>
 		</div>
-		<div class="flex h-full w-3/6 justify-around">
-			<div class="flex h-full flex-col justify-center">
-				<p>Filter by</p>
+		<div class="flex h-full w-3/6 justify-center">
+			<div class="flex h-full flex-col justify-center p-4">
+				<p>Filter by: </p>
 			</div>
-			<ListBox multiple>
+			<ListBox multiple class="flex h-full flex-col justify-center">
 				<ListBoxItem bind:group={valueMultiple} name="medium" value="Client">Client</ListBoxItem>
 				<ListBoxItem bind:group={valueMultiple} name="medium" value="Supplier">
 					Supplier

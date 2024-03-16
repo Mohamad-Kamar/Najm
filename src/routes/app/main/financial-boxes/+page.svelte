@@ -40,7 +40,7 @@
 			</div>
 			<div>
 				<div>
-					<label> Filter by </label>
+					<p>Filter by</p>
 				</div>
 			</div>
 		</div>
