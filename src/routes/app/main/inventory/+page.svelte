@@ -96,12 +96,97 @@
 			soldTo: 'employee',
 			priceOfSale: 25,
 		},
+		{
+			itemName: 'apple',
+			quantityOrdered: 33,
+			totalUnits: 80,
+			soldTo: 'client',
+			priceOfSale: 80.0,
+		},
+		{
+			itemName: 'orange',
+			quantityOrdered: 35,
+			totalUnits: 85,
+			soldTo: 'supplier',
+			priceOfSale: 85.0,
+		},
+		{
+			itemName: 'grape',
+			quantityOrdered: 37,
+			totalUnits: 90,
+			soldTo: 'employee',
+			priceOfSale: 90.0,
+		},
+		{
+			itemName: 'pear',
+			quantityOrdered: 39,
+			totalUnits: 95,
+			soldTo: 'client',
+			priceOfSale: 95.0,
+		},
+		{
+			itemName: 'peach',
+			quantityOrdered: 41,
+			totalUnits: 100,
+			soldTo: 'supplier',
+			priceOfSale: 100.0,
+		},
+		{
+			itemName: 'plum',
+			quantityOrdered: 43,
+			totalUnits: 105,
+			soldTo: 'employee',
+			priceOfSale: 105.0,
+		},
+		{
+			itemName: 'kiwi',
+			quantityOrdered: 45,
+			totalUnits: 110,
+			soldTo: 'client',
+			priceOfSale: 110.0,
+		},
+		{
+			itemName: 'mango',
+			quantityOrdered: 47,
+			totalUnits: 115,
+			soldTo: 'supplier',
+			priceOfSale: 115.0,
+		},
+		{
+			itemName: 'papaya',
+			quantityOrdered: 49,
+			totalUnits: 120,
+			soldTo: 'employee',
+			priceOfSale: 120.0,
+		},
+		{
+			itemName: 'watermelon',
+			quantityOrdered: 51,
+			totalUnits: 125,
+			soldTo: 'client',
+			priceOfSale: 125.0,
+		},
+		{
+			itemName: 'cantaloupe',
+			quantityOrdered: 53,
+			totalUnits: 130,
+			soldTo: 'supplier',
+			priceOfSale: 130.0,
+		},
+		{
+			itemName: 'honeydew',
+			quantityOrdered: 55,
+			totalUnits: 135,
+			soldTo: 'employee',
+			priceOfSale: 135.0,
+		},
 	];
 
-	let selectedItems: string[] = [];
+	let selectedItemNames: string[] = [];
+	$: selectedItems = itemsTable.filter((item) => selectedItemNames.includes(item.itemName));
 	let searchString = '';
 	function onItemSelection(event: CustomEvent): void {
-		selectedItems = [...selectedItems, event.detail.label];
+		selectedItemNames = [...selectedItemNames, event.detail.label];
 		searchString = '';
 	}
 </script>
@@ -120,7 +205,7 @@
 				<div>
 					<InputChip
 						bind:input={searchString}
-						bind:value={selectedItems}
+						bind:value={selectedItemNames}
 						name="chips"
 						id="search-item"
 					/>
@@ -139,7 +224,7 @@
 		</div>
 		<div class="flex h-full w-3/6 justify-center">
 			<div class="flex h-full flex-col justify-center p-4">
-				<p>Filter by: </p>
+				<p>Filter by:</p>
 			</div>
 			<ListBox multiple class="flex h-full flex-col justify-center">
 				<ListBoxItem bind:group={valueMultiple} name="medium" value="Client">Client</ListBoxItem>
@@ -155,11 +240,12 @@
 
 	<section>
 		<div>
-			<p>Item Details:</p>
+			<h1>Item Details:</h1>
 		</div>
 	</section>
 
 	<section>
+		<h1>Item Record</h1>
 		<div class="table-container">
 			<table class="table table-hover">
 				<thead>
@@ -172,7 +258,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					{#each itemsTable as row}
+					{#each selectedItems as row}
 						<tr>
 							<td>{row.itemName}</td>
 							<td>{row.quantityOrdered}</td>
