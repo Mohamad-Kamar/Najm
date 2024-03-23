@@ -1,14 +1,12 @@
 <script lang="ts">
 	import { AppShell, ListBox, ListBoxItem, Autocomplete, InputChip } from '@skeletonlabs/skeleton';
-	import type { InventoryItemRecord } from '../../../../Types/InventoryItemRecord';
-	let popupSettings = {
-		event: 'focus-click',
-		target: 'popupAutocomplete',
-		placement: 'bottom',
-	};
+	import type {
+		InventoryItemRecord,
+		InventoryItemRow,
+	} from '../../../../Types/InventoryItemRecord';
+	export let data;
 	let valueMultiple: string[] = ['Client', 'Supplier', 'Employee'];
-
-	let itemsTable: InventoryItemRecord = [
+	let itemsTable : InventoryItemRecord = [
 		{ itemName: 'banana', quantityOrdered: 3, totalUnits: 5, soldTo: 'client', priceOfSale: 5.0 },
 		{
 			itemName: 'apple',
@@ -180,7 +178,7 @@
 			soldTo: 'employee',
 			priceOfSale: 135.0,
 		},
-	];
+	];;
 
 	let selectedItemNames: string[] = [];
 	$: selectedItems = itemsTable.filter((item) => selectedItemNames.includes(item.itemName));
@@ -189,6 +187,32 @@
 		selectedItemNames = [...selectedItemNames, event.detail.label];
 		searchString = '';
 	}
+
+	let isAscending = false; // You can toggle this flag to change the sorting order
+
+	function metaSort(
+		sortFunction: (a: InventoryItemRow, b: InventoryItemRow) => number,
+		isAscending: boolean,
+	): () => void {
+		return function (): void {
+			isAscending = !isAscending;
+
+			if (isAscending) {
+				selectedItems = selectedItems.sort(sortFunction);
+			} else {
+				selectedItems = selectedItems.sort((a, b) => sortFunction(b, a));
+			}
+		};
+	}
+
+	const sortByName = metaSort((a, b) => a.itemName.localeCompare(b.itemName), isAscending);
+	const sortQuantityOrdered = metaSort(
+		(a, b) => a.quantityOrdered - b.quantityOrdered,
+		isAscending,
+	);
+	const sortByTotalUnits = metaSort((a, b) => a.totalUnits - b.totalUnits, isAscending);
+	const sortBySoldTo = metaSort((a, b) => a.soldTo.localeCompare(b.soldTo), isAscending);
+	const sortByPriceOfSale = metaSort((a, b) => a.priceOfSale - b.priceOfSale, isAscending);
 </script>
 
 <AppShell>
@@ -212,10 +236,15 @@
 					<div class="card max-h-48 w-full max-w-sm overflow-y-auto p-4" tabindex="-1">
 						<Autocomplete
 							bind:input={searchString}
-							options={itemsTable.map((item) => ({
-								label: item.itemName,
-								value: item.itemName,
-							}))}
+							options={itemsTable
+								.filter(
+									(item, index, self) =>
+										self.findIndex((t) => t.itemName === item.itemName) === index,
+								)
+								.map((item) => ({
+									label: item.itemName,
+									value: item.itemName,
+								}))}
 							on:selection={onItemSelection}
 						/>
 					</div>
@@ -250,11 +279,11 @@
 			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th>Item Name</th>
-						<th>Quantity Ordered</th>
-						<th>Total Units</th>
-						<th>Sold To</th>
-						<th>Price of Sale</th>
+						<th on:click={sortByName} class="cursor-pointer">Item Name</th>
+						<th on:click={sortQuantityOrdered} class="cursor-pointer">Quantity Ordered</th>
+						<th on:click={sortByTotalUnits} class="cursor-pointer">Total Units</th>
+						<th on:click={sortBySoldTo} class="cursor-pointer">Sold To</th>
+						<th on:click={sortByPriceOfSale} class="cursor-pointer">Price of Sale</th>
 					</tr>
 				</thead>
 				<tbody>
