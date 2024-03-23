@@ -1,0 +1,191 @@
+[
+	{
+		"itemName": "banana",
+		"quantityOrdered": 3,
+		"totalUnits": 5,
+		"soldTo": "client",
+		"priceOfSale": 5.0
+	},
+	{
+		"itemName": "apple",
+		"quantityOrdered": 5,
+		"totalUnits": 10,
+		"soldTo": "supplier",
+		"priceOfSale": 10.0
+	},
+	{
+		"itemName": "orange",
+		"quantityOrdered": 7,
+		"totalUnits": 15,
+		"soldTo": "employee",
+		"priceOfSale": 15.0
+	},
+	{
+		"itemName": "grape",
+		"quantityOrdered": 9,
+		"totalUnits": 20,
+		"soldTo": "client",
+		"priceOfSale": 20.0
+	},
+	{
+		"itemName": "pear",
+		"quantityOrdered": 11,
+		"totalUnits": 25,
+		"soldTo": "supplier",
+		"priceOfSale": 25.0
+	},
+	{
+		"itemName": "peach",
+		"quantityOrdered": 13,
+		"totalUnits": 30,
+		"soldTo": "employee",
+		"priceOfSale": 30.0
+	},
+	{
+		"itemName": "plum",
+		"quantityOrdered": 15,
+		"totalUnits": 35,
+		"soldTo": "client",
+		"priceOfSale": 35.0
+	},
+	{
+		"itemName": "kiwi",
+		"quantityOrdered": 17,
+		"totalUnits": 40,
+		"soldTo": "supplier",
+		"priceOfSale": 40.0
+	},
+	{
+		"itemName": "mango",
+		"quantityOrdered": 19,
+		"totalUnits": 45,
+		"soldTo": "employee",
+		"priceOfSale": 45.0
+	},
+	{
+		"itemName": "papaya",
+		"quantityOrdered": 21,
+		"totalUnits": 50,
+		"soldTo": "client",
+		"priceOfSale": 50.0
+	},
+	{
+		"itemName": "watermelon",
+		"quantityOrdered": 23,
+		"totalUnits": 55,
+		"soldTo": "supplier",
+		"priceOfSale": 55.0
+	},
+	{
+		"itemName": "cantaloupe",
+		"quantityOrdered": 25,
+		"totalUnits": 60,
+		"soldTo": "employee",
+		"priceOfSale": 60.0
+	},
+	{
+		"itemName": "honeydew",
+		"quantityOrdered": 27,
+		"totalUnits": 65,
+		"soldTo": "client",
+		"priceOfSale": 65.0
+	},
+	{
+		"itemName": "cucumber",
+		"quantityOrdered": 29,
+		"totalUnits": 70,
+		"soldTo": "supplier",
+		"priceOfSale": 70.0
+	},
+	{
+		"itemName": "tomato",
+		"quantityOrdered": 31,
+		"totalUnits": 75,
+		"soldTo": "employee",
+		"priceOfSale": 25
+	},
+	{
+		"itemName": "apple",
+		"quantityOrdered": 33,
+		"totalUnits": 80,
+		"soldTo": "client",
+		"priceOfSale": 80.0
+	},
+	{
+		"itemName": "orange",
+		"quantityOrdered": 35,
+		"totalUnits": 85,
+		"soldTo": "supplier",
+		"priceOfSale": 85.0
+	},
+	{
+		"itemName": "grape",
+		"quantityOrdered": 37,
+		"totalUnits": 90,
+		"soldTo": "employee",
+		"priceOfSale": 90.0
+	},
+	{
+		"itemName": "pear",
+		"quantityOrdered": 39,
+		"totalUnits": 95,
+		"soldTo": "client",
+		"priceOfSale": 95.0
+	},
+	{
+		"itemName": "peach",
+		"quantityOrdered": 41,
+		"totalUnits": 100,
+		"soldTo": "supplier",
+		"priceOfSale": 100.0
+	},
+	{
+		"itemName": "plum",
+		"quantityOrdered": 43,
+		"totalUnits": 105,
+		"soldTo": "employee",
+		"priceOfSale": 105.0
+	},
+	{
+		"itemName": "kiwi",
+		"quantityOrdered": 45,
+		"totalUnits": 110,
+		"soldTo": "client",
+		"priceOfSale": 110.0
+	},
+	{
+		"itemName": "mango",
+		"quantityOrdered": 47,
+		"totalUnits": 115,
+		"soldTo": "supplier",
+		"priceOfSale": 115.0
+	},
+	{
+		"itemName": "papaya",
+		"quantityOrdered": 49,
+		"totalUnits": 120,
+		"soldTo": "employee",
+		"priceOfSale": 120.0
+	},
+	{
+		"itemName": "watermelon",
+		"quantityOrdered": 51,
+		"totalUnits": 125,
+		"soldTo": "client",
+		"priceOfSale": 125.0
+	},
+	{
+		"itemName": "cantaloupe",
+		"quantityOrdered": 53,
+		"totalUnits": 130,
+		"soldTo": "supplier",
+		"priceOfSale": 130.0
+	},
+	{
+		"itemName": "honeydew",
+		"quantityOrdered": 55,
+		"totalUnits": 135,
+		"soldTo": "employee",
+		"priceOfSale": 135.0
+	}
+]
