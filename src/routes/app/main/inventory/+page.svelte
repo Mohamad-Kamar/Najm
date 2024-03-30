@@ -4,7 +4,7 @@
 		InventoryItemRecord,
 		InventoryItemRow,
 		InventoryItemInfo,
-	} from '../../../../Types/InventoryItemRecord';
+	} from '../../../../Types/InventoryItemTypes';
 	export let data;
 	let valueMultiple: string[] = ['Client', 'Supplier', 'Employee'];
 	let itemsRecordTableData: InventoryItemRecord = data.itemsRecordTableData;
