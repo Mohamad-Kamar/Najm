@@ -1,4 +1,4 @@
-export type InventoryItemRow = {
+export type InventoryItemRecordRow = {
 	itemName: string;
 	quantityOrdered: number;
 	totalUnits: number;
@@ -6,7 +6,7 @@ export type InventoryItemRow = {
 	priceOfSale: number;
 };
 
-export type InventoryItemRecord = InventoryItemRow[];
+export type InventoryItemRecord = InventoryItemRecordRow[];
 
 export type InventoryItemInfo = {
 	InventoryItemName: string;

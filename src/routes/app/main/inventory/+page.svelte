@@ -2,7 +2,7 @@
 	import { AppShell, ListBox, ListBoxItem, Autocomplete, InputChip } from '@skeletonlabs/skeleton';
 	import type {
 		InventoryItemRecord,
-		InventoryItemRow,
+		InventoryItemRecordRow,
 		InventoryItemInfo,
 	} from '../../../../Types/InventoryItemTypes';
 	export let data;
@@ -28,7 +28,7 @@
 	let isAscending = false; // You can toggle this flag to change the sorting order
 
 	function metaSort(
-		sortFunction: (a: InventoryItemRow, b: InventoryItemRow) => number,
+		sortFunction: (a: InventoryItemRecordRow, b: InventoryItemRecordRow) => number,
 		isAscending: boolean,
 	): () => void {
 		return function (): void {
