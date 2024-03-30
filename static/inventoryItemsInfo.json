@@ -1,0 +1,66 @@
+[
+	{
+		"InventoryItemName": "banana",
+		"InventoryItemDescription": "A long yellow fruit",
+		"InventoryItemPriceOfPurchace": 50,
+		"InventoryItemUnitsInStock": 3,
+		"InventoryItemUnitsInvoiced": 0,
+		"InventoryItemTotalQuantityOfPurchace": 3
+	},
+	{
+		"InventoryItemName": "apple",
+		"InventoryItemDescription": "A round red fruit",
+		"InventoryItemPriceOfPurchace": 100,
+		"InventoryItemUnitsInStock": 5,
+		"InventoryItemUnitsInvoiced": 0,
+		"InventoryItemTotalQuantityOfPurchace": 5
+	},
+	{
+		"InventoryItemName": "orange",
+		"InventoryItemDescription": "A round orange fruit",
+		"InventoryItemPriceOfPurchace": 75,
+		"InventoryItemUnitsInStock": 2,
+		"InventoryItemUnitsInvoiced": 0,
+		"InventoryItemTotalQuantityOfPurchace": 2
+	},
+	{
+		"InventoryItemName": "grape",
+		"InventoryItemDescription": "A small round fruit",
+		"InventoryItemPriceOfPurchace": 150,
+		"InventoryItemUnitsInStock": 4,
+		"InventoryItemUnitsInvoiced": 0,
+		"InventoryItemTotalQuantityOfPurchace": 4
+	},
+	{
+		"InventoryItemName": "mango",
+		"InventoryItemDescription": "A large yellow fruit",
+		"InventoryItemPriceOfPurchace": 200,
+		"InventoryItemUnitsInStock": 1,
+		"InventoryItemUnitsInvoiced": 0,
+		"InventoryItemTotalQuantityOfPurchace": 1
+	},
+	{
+		"InventoryItemName": "pear",
+		"InventoryItemDescription": "A round green fruit",
+		"InventoryItemPriceOfPurchace": 125,
+		"InventoryItemUnitsInStock": 3,
+		"InventoryItemUnitsInvoiced": 0,
+		"InventoryItemTotalQuantityOfPurchace": 3
+	},
+	{
+		"InventoryItemName": "pineapple",
+		"InventoryItemDescription": "A large yellow fruit",
+		"InventoryItemPriceOfPurchace": 250,
+		"InventoryItemUnitsInStock": 1,
+		"InventoryItemUnitsInvoiced": 0,
+		"InventoryItemTotalQuantityOfPurchace": 1
+	},
+	{
+		"InventoryItemName": "watermelon",
+		"InventoryItemDescription": "A large green fruit",
+		"InventoryItemPriceOfPurchace": 300,
+		"InventoryItemUnitsInStock": 1,
+		"InventoryItemUnitsInvoiced": 0,
+		"InventoryItemTotalQuantityOfPurchace": 1
+	}
+]

@@ -3,13 +3,22 @@
 	import type {
 		InventoryItemRecord,
 		InventoryItemRow,
+		InventoryItemInfo,
 	} from '../../../../Types/InventoryItemRecord';
 	export let data;
 	let valueMultiple: string[] = ['Client', 'Supplier', 'Employee'];
-	let itemsTable = data.itemsTableData;
+	let itemsRecordTableData: InventoryItemRecord = data.itemsRecordTableData;
+	let inventoryItemsInfo: InventoryItemInfo[] = data.inventoryItemsInfo;
 
 	let selectedItemNames: string[] = [];
-	$: selectedItems = itemsTable.filter((item) => selectedItemNames.includes(item.itemName));
+	$: selectedItems = itemsRecordTableData.filter((item) =>
+		selectedItemNames.includes(item.itemName),
+	);
+
+	$: selectedItemsInfo = inventoryItemsInfo.filter((item) =>
+		selectedItemNames.includes(item.InventoryItemName),
+	);
+
 	let searchString = '';
 	function onItemSelection(event: CustomEvent): void {
 		selectedItemNames = [...selectedItemNames, event.detail.label];
@@ -64,7 +73,7 @@
 					<div class="card max-h-48 w-full max-w-sm overflow-y-auto p-4" tabindex="-1">
 						<Autocomplete
 							bind:input={searchString}
-							options={itemsTable
+							options={itemsRecordTableData
 								.filter(
 									(item, index, self) =>
 										self.findIndex((t) => t.itemName === item.itemName) === index,
@@ -94,15 +103,40 @@
 			</ListBox>
 		</div>
 	</section>
-
+	<br />
 	<section>
-		<div>
-			<h1>Item Details:</h1>
+		<h1 class="flex justify-center"><strong>Selected Items Details</strong></h1>
+		<div class="table-container">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Item Name</th>
+						<th>Item Description</th>
+						<th>Price Of Purchace</th>
+						<th>Units In Stock</th>
+						<th>Units Invoiced</th>
+						<th>Total Quantity Of Purchace</th>
+					</tr>
+				</thead>
+				<tbody>
+					{#each selectedItemsInfo as row}
+						<tr>
+							<td>{row.InventoryItemName}</td>
+							<td>{row.InventoryItemDescription}</td>
+							<td>{row.InventoryItemPriceOfPurchace}</td>
+							<td>{row.InventoryItemUnitsInStock}</td>
+							<td>{row.InventoryItemUnitsInvoiced}</td>
+							<td>{row.InventoryItemTotalQuantityOfPurchace}</td>
+						</tr>
+					{/each}
+				</tbody>
+			</table>
 		</div>
 	</section>
-
+	<br />
+	<br />
 	<section>
-		<h1>Item Record</h1>
+		<h1 class="flex justify-center"><strong>Selected Item Record</strong></h1>
 		<div class="table-container">
 			<table class="table table-hover">
 				<thead>
