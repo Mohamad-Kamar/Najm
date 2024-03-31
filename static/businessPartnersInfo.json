@@ -1,0 +1,62 @@
+[
+    {
+        "BusinessPartnerName": "barbar",
+        "BusinessPartnerTotalExpense": 31,
+        "BusinessPartnerTotalRevenue": 41,
+        "BusinessPartnerUnclaimedInvoice": 5
+    },
+    {
+        "BusinessPartnerName": "foo",
+        "BusinessPartnerTotalExpense": 21,
+        "BusinessPartnerTotalRevenue": 31,
+        "BusinessPartnerUnclaimedInvoice": 4
+    },
+    {
+        "BusinessPartnerName": "mcdonalds",
+        "BusinessPartnerTotalExpense": 21,
+        "BusinessPartnerTotalRevenue": 31,
+        "BusinessPartnerUnclaimedInvoice": 4
+    },
+    {
+        "BusinessPartnerName": "starbucks",
+        "BusinessPartnerTotalExpense": 21,
+        "BusinessPartnerTotalRevenue": 31,
+        "BusinessPartnerUnclaimedInvoice": 4
+    },
+    {
+        "BusinessPartnerName": "kfc",
+        "BusinessPartnerTotalExpense": 21,
+        "BusinessPartnerTotalRevenue": 31,
+        "BusinessPartnerUnclaimedInvoice": 4
+    },
+    {
+        "BusinessPartnerName": "burgerking",
+        "BusinessPartnerTotalExpense": 21,
+        "BusinessPartnerTotalRevenue": 31,
+        "BusinessPartnerUnclaimedInvoice": 4
+    },
+    {
+        "BusinessPartnerName": "wendys",
+        "BusinessPartnerTotalExpense": 21,
+        "BusinessPartnerTotalRevenue": 31,
+        "BusinessPartnerUnclaimedInvoice": 4
+    },
+    {
+        "BusinessPartnerName": "dominos",
+        "BusinessPartnerTotalExpense": 21,
+        "BusinessPartnerTotalRevenue": 31,
+        "BusinessPartnerUnclaimedInvoice": 4
+    },
+    {
+        "BusinessPartnerName": "pizzahut",
+        "BusinessPartnerTotalExpense": 21,
+        "BusinessPartnerTotalRevenue": 31,
+        "BusinessPartnerUnclaimedInvoice": 4
+    },
+    {
+        "BusinessPartnerName": "papajohns",
+        "BusinessPartnerTotalExpense": 21,
+        "BusinessPartnerTotalRevenue": 31,
+        "BusinessPartnerUnclaimedInvoice": 4
+    }
+]

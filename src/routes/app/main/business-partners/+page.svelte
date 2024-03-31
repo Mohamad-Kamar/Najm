@@ -1,84 +1,175 @@
 <script lang="ts">
-	import { AppShell, ListBox, ListBoxItem } from '@skeletonlabs/skeleton';
-	import { randomDate } from '$lib/utils';
-	let tableArr = [
-		{ position: 1, name: 'Hydrogen', symbol: 'H', weight: 1.0079, modifiedDate: randomDate() },
-		{ position: 2, name: 'Helium', symbol: 'He', weight: 4.0026, modifiedDate: randomDate() },
-		{ position: 3, name: 'Lithium', symbol: 'Li', weight: 6.941, modifiedDate: randomDate() },
-		{ position: 4, name: 'Beryllium', symbol: 'Be', weight: 9.0122, modifiedDate: randomDate() },
-		{ position: 5, name: 'Boron', symbol: 'B', weight: 10.811, modifiedDate: randomDate() },
-		{ position: 6, name: 'Carbon', symbol: 'C', weight: 12.0107, modifiedDate: randomDate() },
-		{ position: 7, name: 'Nitrogen', symbol: 'N', weight: 14.0067, modifiedDate: randomDate() },
-		{ position: 8, name: 'Oxygen', symbol: 'O', weight: 15.9994, modifiedDate: randomDate() },
-		{ position: 9, name: 'Fluorine', symbol: 'F', weight: 18.9984, modifiedDate: randomDate() },
-		{ position: 10, name: 'Neon', symbol: 'Ne', weight: 20.1797, modifiedDate: randomDate() },
-	];
+	import { AppShell, ListBox, ListBoxItem, Autocomplete, InputChip } from '@skeletonlabs/skeleton';
+	import type {
+		BusinessPartnersInfo,
+		BusinessPartnersRecord,
+		BusinessPartnersRecordRow,
+	} from '../../../../Types/BusinessPartnersTypes';
+	export let data;
 	let valueMultiple: string[] = ['Client', 'Supplier', 'Employee'];
+	let businessPartnersRecordTableData: BusinessPartnersRecord =
+		data.businessPartnersRecordTableData;
+	let businessPartnersInfoTableData: BusinessPartnersInfo[] = data.businessPartnersInfoTableData;
+
+	let selectedBusinessPartnersNames: string[] = [];
+	$: selectedItems = businessPartnersRecordTableData.filter((item) =>
+		selectedBusinessPartnersNames.includes(item.businessPartnerName),
+	);
+
+	$: selectedItemsInfo = businessPartnersInfoTableData.filter((item) =>
+		selectedBusinessPartnersNames.includes(item.BusinessPartnerName),
+	);
+
+	let searchString = '';
+	function onItemSelection(event: CustomEvent): void {
+		selectedBusinessPartnersNames = [...selectedBusinessPartnersNames, event.detail.label];
+		searchString = '';
+	}
+
+	let isAscending = false; // You can toggle this flag to change the sorting order
+
+	function metaSort(
+		sortFunction: (a: BusinessPartnersRecordRow, b: BusinessPartnersRecordRow) => number,
+		isAscending: boolean,
+	): () => void {
+		return function (): void {
+			isAscending = !isAscending;
+
+			if (isAscending) {
+				selectedItems = selectedItems.sort(sortFunction);
+			} else {
+				selectedItems = selectedItems.sort((a, b) => sortFunction(b, a));
+			}
+		};
+	}
+
+	const sortByName = metaSort(
+		(a, b) => a.businessPartnerName.localeCompare(b.businessPartnerName),
+		isAscending,
+	);
+	const sortByTransaction = metaSort(
+		(a, b) => a.transaction.localeCompare(b.transaction),
+		isAscending,
+	);
+	const sortByTotalBalance = metaSort((a, b) => a.totalBalance - b.totalBalance, isAscending);
+	const sortByEventDateString = metaSort(
+		(a, b) => a.eventDate.localeCompare(b.eventDate),
+		isAscending,
+	);
+	const sortByUnclaimedInvoice = metaSort(
+		(a, b) => a.unclaimedInvoice - b.unclaimedInvoice,
+		isAscending,
+	);
 </script>
 
 <AppShell>
-	<div class="grid grid-cols-1 divide-y">
-		<div class="grid grid-cols-1 divide-x">
-			<div>
+	<section class="flex h-96 justify-between bg-white">
+		<div class="flex w-3/6 justify-around">
+			<div class="flex w-3/6 flex-col">
+				<label class="p-1" for="from">From Date</label>
+				<label class="p-1" for="to">To Date</label>
+				<label class="p-1" for="search-item">Search Business Partner</label>
+			</div>
+			<div class="flex w-3/6 flex-col">
+				<input id="from" type="date" class="input w-40 bg-white p-1" aria-label="From Date" />
+				<input id="to" type="date" class="input w-40 bg-white p-1" aria-label="To Date" />
 				<div>
-					<label for="from"> From Date </label>
-					<input id="from" type="date" class="input bg-white" aria-label="From Date" />
-				</div>
-				<div>
-					<label for="to"> To Date </label>
-					<input id="to" type="date" class="input bg-white" aria-label="To Date" />
-				</div>
-				<div>
-					<p>Search Filter</p>
-					<ListBox multiple>
-						<ListBoxItem bind:group={valueMultiple} name="medium" value="Client">
-							Client
-						</ListBoxItem>
-						<ListBoxItem bind:group={valueMultiple} name="medium" value="Supplier">
-							Supplier
-						</ListBoxItem>
-						<ListBoxItem bind:group={valueMultiple} name="medium" value="Employee">
-							Employee
-						</ListBoxItem>
-					</ListBox>
-				</div>
-				<div>
-					<label for="search-item"> Search Item </label>
-					<input
-						type="text"
-						class="input bg-white"
-						placeholder="Search..."
-						aria-label="Search Item"
+					<InputChip
+						bind:input={searchString}
+						bind:value={selectedBusinessPartnersNames}
+						name="chips"
 						id="search-item"
 					/>
+					<div class="card max-h-48 w-full max-w-sm overflow-y-auto p-4" tabindex="-1">
+						<Autocomplete
+							bind:input={searchString}
+							options={businessPartnersRecordTableData
+								.filter(
+									(item, index, self) =>
+										self.findIndex((t) => t.businessPartnerName === item.businessPartnerName) ===
+										index,
+								)
+								.map((item) => ({
+									label: item.businessPartnerName,
+									value: item.businessPartnerName,
+								}))}
+							on:selection={onItemSelection}
+						/>
+					</div>
 				</div>
 			</div>
 		</div>
-		<div>
-			<div class="table-container">
-				<table class="table table-hover">
-					<thead>
-						<tr>
-							<th>Position</th>
-							<th>Name</th>
-							<th>Symbol</th>
-							<th>Weight</th>
-							<th>Modified Date</th>
-						</tr>
-					</thead>
-					<tbody>
-						{#each tableArr as row, i}
-							<tr>
-								<td>{row.position}</td>
-								<td>{row.name}</td>
-								<td>{row.symbol}</td>
-								<td>{row.weight}</td>
-								<td>{row.modifiedDate}</td>
-							</tr>
-						{/each}
-					</tbody>
-				</table>
+		<div class="flex h-full w-3/6 justify-center">
+			<div class="flex h-full flex-col justify-center p-4">
+				<p>Filter by:</p>
 			</div>
+			<ListBox multiple class="flex h-full flex-col justify-center">
+				<ListBoxItem bind:group={valueMultiple} name="medium" value="Client">Client</ListBoxItem>
+				<ListBoxItem bind:group={valueMultiple} name="medium" value="Supplier">
+					Supplier
+				</ListBoxItem>
+				<ListBoxItem bind:group={valueMultiple} name="medium" value="Employee">
+					Employee
+				</ListBoxItem>
+			</ListBox>
 		</div>
-	</div>
+	</section>
+	<br />
+	<section>
+		<h1 class="flex justify-center"><strong>Selected Business Partner Details</strong></h1>
+		<div class="table-container">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Business Partner Name</th>
+						<th>Business Partner Total Expenses</th>
+						<th>Business Partner Total Revenues</th>
+						<th>Business Partner Unclaimed Invoices</th>
+					</tr>
+				</thead>
+				<tbody>
+					{#each selectedItemsInfo as row}
+						<tr>
+							<td>{row.BusinessPartnerName}</td>
+							<td>{row.BusinessPartnerTotalExpense}</td>
+							<td>{row.BusinessPartnerTotalRevenue}</td>
+							<td>{row.BusinessPartnerUnclaimedInvoice}</td>
+						</tr>
+					{/each}
+				</tbody>
+			</table>
+		</div>
+	</section>
+	<br />
+	<br />
+	<section>
+		<h1 class="flex justify-center"><strong>Selected Item Record</strong></h1>
+		<div class="table-container">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th on:click={sortByName} class="cursor-pointer">Business Partner Name</th>
+						<th on:click={sortByTransaction} class="cursor-pointer">Business Partner Transaction</th
+						>
+						<th on:click={sortByTotalBalance} class="cursor-pointer"
+							>Business Partner Total Balance</th
+						>
+						<th on:click={sortByEventDateString} class="cursor-pointer">Event Date</th>
+						<th on:click={sortByUnclaimedInvoice} class="cursor-pointer">Unclaimed Invoice</th>
+					</tr>
+				</thead>
+				<tbody>
+					{#each selectedItems as row}
+						<tr>
+							<td>{row.businessPartnerName}</td>
+							<td>{row.transaction}</td>
+							<td>{row.totalBalance}</td>
+							<td>{row.eventDate}</td>
+							<td>{row.unclaimedInvoice}</td>
+						</tr>
+					{/each}
+				</tbody>
+			</table>
+		</div>
+	</section>
 </AppShell>
