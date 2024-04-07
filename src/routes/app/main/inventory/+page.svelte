@@ -103,7 +103,9 @@
 			</ListBox>
 		</div>
 	</section>
+
 	<br />
+
 	<section>
 		<h1 class="flex justify-center"><strong>Selected Items Details</strong></h1>
 		<div class="table-container">
@@ -133,8 +135,10 @@
 			</table>
 		</div>
 	</section>
+
 	<br />
 	<br />
+
 	<section>
 		<h1 class="flex justify-center"><strong>Selected Item Record</strong></h1>
 		<div class="table-container">
